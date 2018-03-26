@@ -90,14 +90,14 @@ class ProductController extends Controller
           'name' => 'required',
           'description' => 'required',
           'price' => 'required|numeric'
-          //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+          'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
 
         $product->name = $request->get('name');
         $product->description = $request->get('description');
         $product->price = $request->get('price');
-        //$product->image = $path;
+        $product->image = $path;
         $product->save();
         return redirect('/');
     }
