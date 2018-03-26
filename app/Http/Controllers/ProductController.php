@@ -81,7 +81,7 @@ class ProductController extends Controller
     }
 
 
-/*
+
     public function update(Request $request, $id)
     {
         //$product = Product::find($id);
@@ -101,7 +101,7 @@ class ProductController extends Controller
         $product->save();
         return redirect('/');
     }
-*/
+
      public function show(Product $product,$id)
     {
         $product = Product::find($id);
