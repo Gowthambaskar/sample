@@ -109,6 +109,15 @@ class ProductController extends Controller
 
     }
 
+    public function destroy(Product $product,$id)
+    {
+        $products = Product::find($id);
+        $products->delete();
+        return redirect('/');
+    
+    }
+  
+
 
 
 }

@@ -23,6 +23,8 @@ Route::get('/', 'ProductController@index');
 Route::get('/create', 'ProductController@create');
 Route::get('/edit/{id}', 'ProductController@edit');
 Route::get('/show/{id}', 'ProductController@show');
+Route::get('/destroy/{id}','ProductController@destroy');
+
 
 
 Route::post('/add_item', 'ProductController@store');
