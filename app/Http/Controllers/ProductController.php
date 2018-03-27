@@ -36,11 +36,11 @@ class ProductController extends Controller
      	{
 	        $file = $request->file('image');
 	        // Get the Image Name
-	        $fileName = $file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
+	        $fileName = $file->getClientOriginalName();
 	        // Set the Filepath 
 	        $path = 'uploads/'.$fileName;
 	        // Move the file to the upload Folder
-	        $file = $file->move($path, $fileName);
+	        $file = $file->move('uploads/', $fileName);
 	        //dd($path);
     	}
         $product= new Product(array(
@@ -55,7 +55,7 @@ class ProductController extends Controller
 
  	}
 
- 	public function edit($id)
+ 	public function edit(Product $product,$id)
     {
         $product = Product::find($id);
         return view('edit',compact('product','id'));
@@ -64,35 +64,61 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product,$id)
     { 
-    	$product= Product::find($id);
     	
-        request()->validate([
+        $request->validate([
+
           'name' => 'required',
           'description' => 'required',
-          'price' => 'required|numeric'
+          'price' => 'required|numeric',
+          'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
         ]);
-        
-        $product->name=$request->get('name');
-        $product->description=$request->get('description');
-        $product->price=$request->get('price');
-        $product->save();
+
+        $products = Product::find($id);
+        $products->name = $request->get('name');
+        $products->description = $request->get('description');
+        $products->price = $request->get('price');
+        if( $request->hasFile('image') ) 
+      {
+          $file = $request->file('image');
+          // Get the Image Name
+          $fileName = $file->getClientOriginalName();
+          // Set the Filepath 
+          $path = 'uploads/'.$fileName;
+          // Move the file to the upload Folder
+          $file = $file->move('uploads/', $fileName);
+          //dd($path);
+      }
+        $products->image = $path;
+        $products->save();
 
         return redirect('/');
     }
 
 
 
-    public function update(Request $request, $id)
+   /* public function update(Request $request,Product $product, $id)
     {
-        //$product = Product::find($id);
+        $product = Product::find($id);
         $request->validate([
 
           'name' => 'required',
           'description' => 'required',
           'price' => 'required|numeric'
-          'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+          //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
+         if( $request->hasFile('image') ) 
+      {
+          $file = $request->file('image');
+          // Get the Image Name
+          $fileName = $file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
+          // Set the Filepath 
+          $path = 'uploads/'.$fileName;
+          // Move the file to the upload Folder
+          $file = $file->move($path, $fileName);
+          //dd($path);
+      }
 
         $product->name = $request->get('name');
         $product->description = $request->get('description');
@@ -101,7 +127,7 @@ class ProductController extends Controller
         $product->save();
         return redirect('/');
     }
-
+*/
      public function show(Product $product,$id)
     {
         $product = Product::find($id);

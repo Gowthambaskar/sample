@@ -34,21 +34,21 @@
             </div>
           </div>
 
-          <!-- <div class="row">
+           <div class="row">
           <div class="col-md-4"></div>
             <div class="form-group col-md-4">
               <label for="price">Image:</label>
               <input type="file" name="image" id="image" value="{{ $product->image }}">
             </div>
           </div>
- -->
+ 
 
 
         </div>
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
-            <button type="submit" class="btn btn-success" style="margin-left:38px">Add Product</button>
+            <button type="submit" class="btn btn-success" style="margin-left:38px">Update</button>
           </div>
         </div>
       </form>
