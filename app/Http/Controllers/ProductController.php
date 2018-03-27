@@ -62,9 +62,9 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, Product $product,$id)
+    public function update(Request $request,Product $product,$id)
     { 
-    	
+    	//dd($id);
         $request->validate([
 
           'name' => 'required',
@@ -74,10 +74,10 @@ class ProductController extends Controller
 
         ]);
 
-        $products = Product::find($id);
-        $products->name = $request->get('name');
-        $products->description = $request->get('description');
-        $products->price = $request->get('price');
+        $product = Product::find($id);
+        $product->name = $request->get('name');
+        $product->description = $request->get('description');
+        $product->price = $request->get('price');
         if( $request->hasFile('image') ) 
       {
           $file = $request->file('image');
@@ -89,45 +89,12 @@ class ProductController extends Controller
           $file = $file->move('uploads/', $fileName);
           //dd($path);
       }
-        $products->image = $path;
-        $products->save();
-
-        return redirect('/');
-    }
-
-
-
-   /* public function update(Request $request,Product $product, $id)
-    {
-        $product = Product::find($id);
-        $request->validate([
-
-          'name' => 'required',
-          'description' => 'required',
-          'price' => 'required|numeric'
-          //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-
-        ]);
-         if( $request->hasFile('image') ) 
-      {
-          $file = $request->file('image');
-          // Get the Image Name
-          $fileName = $file->getClientOriginalName().'.'.$file->getClientOriginalExtension();
-          // Set the Filepath 
-          $path = 'uploads/'.$fileName;
-          // Move the file to the upload Folder
-          $file = $file->move($path, $fileName);
-          //dd($path);
-      }
-
-        $product->name = $request->get('name');
-        $product->description = $request->get('description');
-        $product->price = $request->get('price');
         $product->image = $path;
         $product->save();
+
         return redirect('/');
     }
-*/
+
      public function show(Product $product,$id)
     {
         $product = Product::find($id);
@@ -137,8 +104,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product,$id)
     {
-        $products = Product::find($id);
-        $products->delete();
+        $product = Product::find($id);
+        $product->delete();
         return redirect('/');
     
     }

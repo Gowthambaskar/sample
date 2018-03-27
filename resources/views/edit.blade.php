@@ -8,7 +8,7 @@
   <body>
     <div class="container">
       <h2>Create A Product</h2><br/>
-      <form action="{{url('/edit_item/{id}')}}" method="post" enctype="multipart/form-data">
+      <form action="{{url('/edit_item',$product->id)}}" id="submit" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
 
         <div class="row">

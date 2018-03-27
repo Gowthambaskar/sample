@@ -30,7 +30,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Image:</strong>
-                <img src="{{ url('/')}}/{{ $product->image }} ">
+                <img src="{{ url('/')}}/{{ $product->image }} " style="height: 100px;">
             </div>
         </div>
     </div>
