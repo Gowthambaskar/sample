@@ -48,6 +48,7 @@
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
             <button type="submit" class="btn btn-success" style="margin-left:38px">Add Product</button>
+            <a class="btn btn-primary" href="{{ url('/') }}"> Back</a>
           </div>
         </div>
       </form>

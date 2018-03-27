@@ -31,6 +31,7 @@
             <div class="form-group">
                 <strong>Image:</strong>
                 <img src="{{ url('/')}}/{{ $product->image }} " style="height: 100px;">
+                <a class="btn btn-primary" href="{{ url('/') }}"> Back</a>
             </div>
         </div>
     </div>
